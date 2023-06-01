@@ -1,0 +1,50 @@
+﻿@model PagedList.IPagedList<_2020603234.Models.Sanpham>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách toàn bộ sản phẩm</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using(Html.BeginForm())
+            {
+                <p>
+                    Tìm kiếm @Html.TextBox("searchValue", ViewBag.currentFillter as String);
+                    <input type="submit" value="Tìm Kiếm" />
+                </p>
+            }
+
+<p>
+    @Html.ActionLink("Sắp xếp theo tên", "Index", new { sortOrder = ViewBag.sapXepTheoTen, currentFillter = ViewBag.currentFillter })
+    @Html.ActionLink("Sắp xếp theo giá", "Index", new { sortOrder = ViewBag.sapXepTheoGia, currentFillter = ViewBag.currentFillter })
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3 table-bordered text-center">
+            Mã sản phẩm:<b> @Html.DisplayFor(modelItem => item.Danhmuc.TenDanhmuc)<br /> </b>
+            Tên sản phẩm: <b>@Html.DisplayFor(modelItem => item.Tenvd) <br /> </b>
+            @{ 
+                var path = "~/Content/Images/" + item.TenAnh;
+                <img src="@Url.Content(path)" width="150" height="150" />
+            }
+            <br />
+            Mô tả:<b> @Html.DisplayFor(modelItem => item.Mota)<br /> </b>
+            Giá tiền:<b>  @Html.DisplayFor(modelItem => item.Giatien)<br /> </b>
+            Số lượng <b>@Html.DisplayFor(modelItem => item.Soluong)<br /> </b>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Mavd }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Mavd }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Mavd })
+</div>
+    }
+
+</div>
+
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount;
+@Html.PagedListPager(Model, page => Url.Action("Index", new {page, sortOrder = ViewBag.currentSort, currentFillter = ViewBag.currentFillter }))
