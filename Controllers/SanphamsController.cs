@@ -15,7 +15,6 @@ namespace _2020603234.Controllers
     {
         private Model1 db = new Model1();
 
-        // GET: Sanphams
         public ActionResult Index(String searchValue, string sortOrder, string currentFilter, int? page)
         {
             ViewBag.currentSort = sortOrder;
@@ -29,6 +28,7 @@ namespace _2020603234.Controllers
             {
                 searchValue = currentFilter;
             }
+
             ViewBag.currentFillter = searchValue;
             if (!String.IsNullOrEmpty(searchValue))
             {
@@ -40,6 +40,7 @@ namespace _2020603234.Controllers
                     sanphams = sanphams.Where(p => p.Tenvd.Contains(searchValue));
                 }
             }
+
 
             switch(sortOrder)
             {
@@ -61,7 +62,6 @@ namespace _2020603234.Controllers
             return View(db.Sanphams.Where(p => p.MaDanhmuc == MaDanhmuc).ToList());
         }
 
-        // GET: Sanphams/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -76,6 +76,8 @@ namespace _2020603234.Controllers
             return View(sanpham);
         }
 
+
+        // giai
         // GET: Sanphams/Create
         public ActionResult Create()
         {
