@@ -15,7 +15,6 @@ namespace _2020603234.Controllers
     {
         private Model1 db = new Model1();
 
-        // GET: Sanphams
         public ActionResult Index(String searchValue, string sortOrder, string currentFilter, int? page)
         {
             ViewBag.currentSort = sortOrder;
