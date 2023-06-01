@@ -76,6 +76,7 @@ namespace _2020603234.Controllers
             return View(sanpham);
         }
 
+
         // giai
         // GET: Sanphams/Create
         public ActionResult Create()
