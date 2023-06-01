@@ -29,6 +29,7 @@ namespace _2020603234.Controllers
             {
                 searchValue = currentFilter;
             }
+
             ViewBag.currentFillter = searchValue;
             if (!String.IsNullOrEmpty(searchValue))
             {
