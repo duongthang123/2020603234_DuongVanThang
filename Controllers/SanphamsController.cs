@@ -62,7 +62,6 @@ namespace _2020603234.Controllers
             return View(db.Sanphams.Where(p => p.MaDanhmuc == MaDanhmuc).ToList());
         }
 
-        // GET: Sanphams/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -77,6 +76,7 @@ namespace _2020603234.Controllers
             return View(sanpham);
         }
 
+        // giai
         // GET: Sanphams/Create
         public ActionResult Create()
         {
